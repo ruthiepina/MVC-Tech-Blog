@@ -1,0 +1,54 @@
+body {
+   font-family: Gill Sans;
+   padding: 20px;
+   background: #e0e0e0;
+}
+
+.header {
+   padding: 30px;
+   font-size: 40px;
+   text-align: center;
+   background: white;
+}
+
+/* Columns that float next to each other*/
+.leftcolumn {
+   float: left;
+   width: 50%;
+}
+
+.rightcolumn {
+   float: right;
+   width: 50%;
+}
+
+/* Placeholder img */
+.fakeimg {
+   background-color: #b0c585;
+   width: 100%;
+   padding: 20px;
+}
+
+/* card for posts */
+.card {
+   background-color: white;
+   padding: 20px;
+   margin-top: 20px;
+}
+
+/* Footer */
+.footer {
+   padding: 20px;
+   text-align: center;
+   background: #aaa;
+   margin-top: 20px;
+}
+
+/* Responsive layout */
+@media screen and (max-width: 800px) {
+   .leftcolumn,
+   .rightcolumn {
+      width: 100%;
+      padding: 0;
+   }
+}
