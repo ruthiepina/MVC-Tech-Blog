@@ -43,6 +43,7 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
+   console.log("created user", req.body);
    User.create({
       username: req.body.username,
       email: req.body.email,
@@ -64,6 +65,7 @@ router.post("/", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
+   console.log("inside login", req.body.email);
    User.findOne({
       where: {
          email: req.body.email,

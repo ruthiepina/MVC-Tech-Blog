@@ -64,7 +64,7 @@ router.get("/:id", (req, res) => {
 
 router.post("/", withAuth, (req, res) => {
    Post.create({
-      title: req.body.post_title,
+      title: req.body.title,
       content: req.body.content,
       user_id: req.session.user_id,
    })
@@ -72,6 +72,7 @@ router.post("/", withAuth, (req, res) => {
       .catch((err) => {
          console.log(err);
          res.status(500).json(err);
+         res.status(500).json({ message: "Post.create() failed", err: err });
       });
 });
 
