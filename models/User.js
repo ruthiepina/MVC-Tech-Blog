@@ -35,10 +35,10 @@ User.init(
             len: [6],
          },
       },
-      avatar_url: {
-         type: DataTypes.STRING,
-         allowNull: false,
-      },
+      // avatar_url: {
+      //    type: DataTypes.STRING,
+      //    allowNull: false,
+      // },
    },
    {    //* Hooks used so that if a user is created/updated the pw is encrypted before being stored in db
       hooks: {
