@@ -77,7 +77,17 @@ router.post("/", withAuth, (req, res) => {
 });
 
 router.put("/:id", withAuth, (req, res) => {
-   Post.update({ title: req.body.title }, { where: { id: req.params.id } })
+   Post.update(
+      {
+         title: req.body.title,
+         content: req.body.content,
+      },
+      {
+         where: {
+            id: req.params.id,
+         },
+      }
+   )
       .then((dbPostData) => {
          if (!dbPostData) {
             res.status(404).json({ message: "No post found with this id." });

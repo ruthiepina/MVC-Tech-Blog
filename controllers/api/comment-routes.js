@@ -1,103 +1,45 @@
 const router = require("express").Router();
-const sequelize = require("../../config/connection");
-const { User, Post, Comment } = require("../../models");
+const { Comment } = require("../../models");
 const withAuth = require("../../utils/auth");
 
 router.get("/", (req, res) => {
-   console.log("check this");
-   Post.findAll({
-      order: [["created_at", "DESC"]],
-      attributes: ["id", "title", "content", "created_at"],
-      include: [
-         {
-            model: Comment,
-            attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
-            include: {
-               model: User,
-               attributes: ["username"],
-            },
-         },
-         {
-            model: User,
-            attributes: ["username"],
-         },
-      ],
+   console.log("======================");
+   Comment.findAll({
+      attributes: ["id", "comment_text", "user_id", "post_id", "created_at"],
    })
-      .then((dbPostData) => res.json(dbPostData))
+      .then((dbUserData) => res.json(dbUserData))
       .catch((err) => {
          console.log(err);
-         res.status(500).json(err);
-      });
-});
-
-router.get("/:id", (req, res) => {
-   Post.findOne({
-      where: { id: req.params.id },
-      attributes: ["id", "title", "content", "created_at"],
-      include: [
-         {
-            model: Comment,
-            attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
-            include: {
-               model: User,
-               attributes: ["username"],
-            },
-         },
-         {
-            model: User,
-            attributes: ["username"],
-         },
-      ],
-   })
-      .then((dbPostData) => {
-         if (!dbPostData) {
-            res.status(404).json({ message: "No post found with this id" });
-            return;
-         }
-         res.json(dbPostData);
-      })
-      .catch((err) => {
-         console.log(err);
-         res.status(500).json(err);
+         res.status(500).send(err);
       });
 });
 
 router.post("/", withAuth, (req, res) => {
-   Post.create({
-      title: req.body.post_title,
-      content: req.body.content,
-      user_id: req.session.user_id,
-   })
-      .then((dbPostData) => res.json(dbPostData))
-      .catch((err) => {
-         console.log(err);
-         res.status(500).json(err);
-      });
-});
-
-router.put("/:id", withAuth, (req, res) => {
-   Post.update({ title: req.body.title }, { where: { id: req.params.id } })
-      .then((dbPostData) => {
-         if (!dbPostData) {
-            res.status(404).json({ message: "No post found with this id." });
-            return;
-         }
-         res.json(dbPostData);
+   console.log("next route of comment_text:", req.body.comment_text);
+   if (req.session) {
+      Comment.create({
+         comment_text: req.body.comment_text,
+         post_id: req.body.post_id,
+         user_id: req.session.user_id,
       })
-      .catch((err) => {
-         console.log(err);
-         res.status(err).json(err);
-      });
+         .then((dbCommentData) => res.json(dbCommentData))
+         .catch((err) => {
+            console.log("yes this is the error");
+            console.log(err);
+            res.status(400).json(err);
+         });
+   }
+   console.log("after req.session if block");
 });
 
 router.delete("/:id", withAuth, (req, res) => {
-   Post.destroy({ where: { id: req.params.id } })
-      .then((dbPostData) => {
-         if (!dbPostData) {
-            res.status(404).json({ message: "No post found with this id." });
+   Comment.destroy({ where: { id: req.params.id } })
+      .then((dbCommentData) => {
+         if (!dbCommentData) {
+            res.status(404).json({ message: "No comment found with this id." });
             return;
          }
-         res.json(dbPostData);
+         res.json(dbCommentData);
       })
       .catch((err) => {
          console.log(err);

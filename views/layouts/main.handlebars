@@ -3,7 +3,7 @@
    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Ruthie Tech Blog</title>
+      <title>MVC-Tech-Blog</title>
       <link rel="stylesheet" href="/stylesheets/style.css" />
    </head>
 
@@ -12,16 +12,16 @@
          <!-- Header -->
          <header class="w3-container w3-center w3-padding-32">
             <h1>
-               <a href="/">This Blog</a>
+               <a href="/">Tech Blog</a>
             </h1>
-            <p><span class="w3-tag">Welcome to the blog!</span></p>
+            <p><span class="w3-tag">Welcome to the Tech Blog!</span></p>
             <nav>
-               <a href="/dashboard">dashboard</a>
+               <a href="/dashboard">Dashboard</a>
                {{#if loggedIn}}
-                  <button id="logout" class="btn-no-style">logout</button>
+                  <button id="logout" class="btn-no-style">Logout</button>
                {{else}}
-                  <a href="/login">login</a>
-                  <a href="/sign-up">sign up</a>
+                  <a href="/login">Login</a>
+                  <a href="/sign-up">Sign Up</a>
                {{/if}}
             </nav>
          </header>

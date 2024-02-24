@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
    User.findOne({
       attributes: { exclude: ["password"] },
-      where: { id: req.params, id },
+      where: { id: req.params.id },
       include: [
          {
             model: Post,
@@ -90,6 +90,16 @@ router.post("/login", (req, res) => {
          res.json({ user: dbUserData, message: "Now logged in." });
       });
    });
+});
+
+router.post("/logout", (req, res) => {
+   if (req.session.loggedIn) {
+      req.session.destroy(() => {
+         res.status(204).end();
+      });
+   } else {
+      res.status(404).end();
+   }
 });
 
 router.put("/:id", (req, res) => {

@@ -1,14 +1,14 @@
-<section>
+<section class='w3-center '>
   <h2>Create New Post</h2>
 
   <form class="new-post-form">
     <div>
-      <label for="post-title">Title</label>
+      <label for="post-title">Title : </label>
       <input type="text" id="post-title" name="post-title" />
     </div>
-    <div>
-      <label for="post-content">Comment</label>
-      <input id="post-content" name="post-content" />
+    <div class='container' >
+      <label for="post-content">Content : </label>
+      <textarea placeholder="Be Kind" cols="34" rows="5" id="post-content" name="post-content" rows='4'></textarea>
     </div>
     <button type="submit" class="btn">Create</button>
   </form>
@@ -21,7 +21,7 @@
     {{#each posts as |post|}}
     <li>
       {{> post-info post}}
-      <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
+      <div class='comment'><a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a></div>
     </li>
     {{/each}}
   </ol>

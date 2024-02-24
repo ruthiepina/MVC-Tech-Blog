@@ -1,16 +1,22 @@
-<article class="post">
-   <div class="title">
-      <a href="{{post_url}}" target="_blank">{{title}}</a>
-      <span>({{format_url content}})</span>
+<!-- Blog entries -->
+<article class='post w3-card-4 w3-margin w3-white'>
+   <!-- Blog entry -->
+   <div class='title w3-container'>
+      <h3><b><a href='/post/{{id}}'>{{title}}</a></b></h3>
    </div>
-   <div class="meta">
-      {{vote_count}}
-      {{format_plural "point" vote_count}}
-      by
-      {{user.username}}
-      on
-      {{format_date created_at}}
-      |
-      <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
+
+   <div class='w3-container'>
+      <span>{{content}}</span>
+   </div>
+   <div class='meta w3-opacity w3-margin'>
+      <h5>
+         by
+         {{user.username}}
+         on
+         {{format_date created_at}}
+         |
+
+         <a href='/post/{{id}}'>{{comments.length}} {{format_plural 'comment' comments.length}}</a>
+      </h5>
    </div>
 </article>

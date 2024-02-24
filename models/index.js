@@ -4,22 +4,10 @@ const Comment = require("./Comment");
 
 User.hasMany(Post, {
    foreignKey: "user_id",
-   onDelete: "SET NULL",
 });
 
 Post.belongsTo(User, {
    foreignKey: "user_id",
-});
-
-User.belongsToMany(Post, {
-   through: Comment,
-   foreignKey: "user_id",
-   onDelete: "SET NULL",
-});
-
-Post.belongsToMany(User, {
-   through: Comment,
-   foreignKey: "post_id",
    onDelete: "SET NULL",
 });
 
