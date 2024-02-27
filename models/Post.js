@@ -26,6 +26,7 @@ Post.init(
             key: "id",
          },
       },
+      //* FUTURE DEVELOPMENT STUFF!
       // image_url: {
       //    type: DataTypes.STRING,
       //    allowNull: false,

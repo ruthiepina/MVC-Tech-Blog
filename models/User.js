@@ -3,7 +3,8 @@ const sequelize = require("../config/connection");
 const bcrypt = require("bcrypt"); //*Hashes user login password
 
 class User extends Model {
-   checkPassword(loginPw) {     //* Checks password against encrypted pw in the db
+   checkPassword(loginPw) {
+      //* Checks password against encrypted pw in the db
       return bcrypt.compareSync(loginPw, this.password);
    }
 }
@@ -35,12 +36,14 @@ User.init(
             len: [6],
          },
       },
+      //* FUTURE DEVELOPMENT STUFF
       // avatar_url: {
       //    type: DataTypes.STRING,
       //    allowNull: false,
       // },
    },
-   {    //* Hooks used so that if a user is created/updated the pw is encrypted before being stored in db
+   {
+      //* Hooks used so that if a user is created/updated the pw is encrypted before being stored in db
       hooks: {
          async beforeCreate(newUserData) {
             newUserData.password = await bcrypt.hash(newUserData.password, 10);

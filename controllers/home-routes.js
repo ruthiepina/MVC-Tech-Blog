@@ -47,6 +47,7 @@ router.get("/sign-up", (req, res) => {
    res.render("sign-up");
 });
 
+//* GET single post route
 router.get("/post/:id", (req, res) => {
    Post.findOne({
       where: {
@@ -74,9 +75,9 @@ router.get("/post/:id", (req, res) => {
             return;
          }
 
-         const post = dbPostData.get({ plain: true });
+         const post = dbPostData.get({ plain: true }); //* serialize data
 
-         res.render("single-post", { post, loggedIn: req.session.loggedIn });
+         res.render("single-post", { post, loggedIn: req.session.loggedIn }); //* pass data to template
       })
       .catch((err) => {
          console.log(err);
