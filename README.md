@@ -85,7 +85,7 @@ THEN I am able to view posts and comments but I am prompted to log in again befo
 
 [MVC-Tech-Blog Repository](https://github.com/ruthiepina/MVC-Tech-Blog)
 
-[Live URL]()
+[Live URL](https://mvc-tech-blog2024-364f63cddd61.herokuapp.com/)
 
 ## License
 
